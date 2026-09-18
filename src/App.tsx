@@ -64,7 +64,10 @@ function HomePage() {
 
       {/* Full-Screen Pure Cinematic Video Hero (Preserved Dark & Cinematic - No Grid) */}
       <section id="hero" className="relative w-full h-[100dvh] min-h-[500px] sm:min-h-[720px] max-h-[1080px] overflow-hidden select-none bg-[#03060E]">
-        <CinematicVideoHero onExploreWork={handleExploreWork} />
+        <CinematicVideoHero
+          onStartProject={() => setIsProjectModalOpen(true)}
+          onExploreWork={handleExploreWork}
+        />
       </section>
 
       {/* Main Content Sections & Footer with Subtle Technical Blueprint Grid */}

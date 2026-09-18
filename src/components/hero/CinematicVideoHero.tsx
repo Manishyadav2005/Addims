@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { RotateCcw, Volume2, VolumeX, ChevronDown } from 'lucide-react';
+import { RotateCcw, Volume2, VolumeX, ArrowRight } from 'lucide-react';
 import { soundFx } from '../../utils/audioSynthesizer';
 import confetti from 'canvas-confetti';
 
@@ -16,7 +16,7 @@ const FRAMES = [
   '/assets/frame_5_sit.jpg',     // 4: Boy sitting comfortably on top of ADDIMS letters
 ];
 
-export const CinematicVideoHero: React.FC<CinematicVideoHeroProps> = () => {
+export const CinematicVideoHero: React.FC<CinematicVideoHeroProps> = ({ onStartProject }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [playbackProgress, setPlaybackProgress] = useState(0);
@@ -328,10 +328,22 @@ export const CinematicVideoHero: React.FC<CinematicVideoHeroProps> = () => {
         </button>
       </div>
 
-      {/* 5. Mobile Scroll Cue */}
-      <div className="md:hidden absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none opacity-60 z-30 animate-pulse">
-        <span className="text-[9px] font-mono font-bold tracking-[0.25em] text-slate-400 uppercase">Scroll</span>
-        <ChevronDown className="w-3.5 h-3.5 text-cyan-400" />
+      {/* 5. Mobile Top Space: IDEAS. ENGINEERED INTO REALITY. */}
+      <div className="md:hidden absolute top-24 sm:top-28 inset-x-0 z-30 px-6 text-center pointer-events-none">
+        <h1 className="text-lg sm:text-xl font-black font-display text-white tracking-widest uppercase leading-snug drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
+          IDEAS. ENGINEERED INTO REALITY.
+        </h1>
+      </div>
+
+      {/* 6. Mobile Bottom Space: Launch Project Button */}
+      <div className="md:hidden absolute bottom-20 sm:bottom-24 inset-x-0 z-30 flex flex-col items-center px-6 pointer-events-auto">
+        <button
+          onClick={onStartProject}
+          className="w-full max-w-[270px] py-3.5 px-6 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold font-display uppercase tracking-wider text-xs sm:text-sm shadow-[0_8px_30px_rgba(147,51,234,0.45)] hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-2"
+        >
+          <span>LAUNCH PROJECT</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );
