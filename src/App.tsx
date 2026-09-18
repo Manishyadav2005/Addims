@@ -11,7 +11,7 @@ import { ContactSection } from './components/sections/ContactSection';
 import { ProjectModal } from './components/modals/ProjectModal';
 import { Footer } from './components/layout/Footer';
 import { WhatsAppFloatingButton } from './components/common/WhatsAppFloatingButton';
-import { scrollToSection } from './utils/scrollUtils';
+import { scrollToSection, scrollToTop } from './utils/scrollUtils';
 
 // Public Pages
 import { ShowcasePage } from './pages/ShowcasePage';
@@ -35,7 +35,11 @@ function ScrollToHashHandler() {
     if (location.hash) {
       const sectionId = location.hash.replace('#', '');
       const timer = setTimeout(() => {
-        scrollToSection(sectionId, 80);
+        if (sectionId === 'hero') {
+          scrollToTop();
+        } else {
+          scrollToSection(sectionId, 80);
+        }
       }, 120);
       return () => clearTimeout(timer);
     }
@@ -59,7 +63,7 @@ function HomePage() {
       <Navbar onStartProject={() => setIsProjectModalOpen(true)} />
 
       {/* Full-Screen Pure Cinematic Video Hero (Preserved Dark & Cinematic - No Grid) */}
-      <section className="relative w-full h-screen min-h-[720px] max-h-[1080px] overflow-hidden select-none bg-[#0A060E]">
+      <section id="hero" className="relative w-full h-screen min-h-[720px] max-h-[1080px] overflow-hidden select-none bg-[#0A060E]">
         <CinematicVideoHero onExploreWork={handleExploreWork} />
       </section>
 

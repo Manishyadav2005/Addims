@@ -99,9 +99,16 @@ export const BuiltByAddimsSection: React.FC = () => {
           ))}
         </div>
       ) : featuredProjects.length === 0 ? (
-        <div className="rounded-3xl bg-white border border-purple-100 p-12 text-center shadow-sm">
-          <Layers className="w-8 h-8 text-purple-600 mx-auto mb-3" />
-          <p className="text-black font-mono text-sm font-black">No projects published yet.</p>
+        <div className="rounded-3xl bg-white/90 border border-dashed border-purple-200/90 p-10 sm:p-12 text-center max-w-lg mx-auto shadow-xs">
+          <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 border border-purple-200/60 flex items-center justify-center mx-auto mb-3 shadow-xs">
+            <Layers className="w-6 h-6" />
+          </div>
+          <h3 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-1">
+            No Projects Published Yet
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-600 font-medium">
+            Projects added from the Admin Dashboard will appear here.
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
@@ -206,17 +213,19 @@ export const BuiltByAddimsSection: React.FC = () => {
         </div>
       )}
 
-      {/* Showcase Explorer Link */}
-      <div className="text-center">
-        <button
-          onClick={() => navigate('/showcase')}
-          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-black font-display uppercase tracking-wider text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.25)] group cursor-pointer"
-        >
-          <Sparkles className="w-4 h-4 text-purple-400 group-hover:rotate-12 transition-transform" />
-          <span>Show More</span>
-          <ArrowRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-        </button>
-      </div>
+      {/* Showcase Explorer Link (Only when projects exist) */}
+      {featuredProjects.length > 0 && (
+        <div className="text-center">
+          <button
+            onClick={() => navigate('/showcase')}
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-black font-display uppercase tracking-wider text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.25)] group cursor-pointer"
+          >
+            <Sparkles className="w-4 h-4 text-purple-400 group-hover:rotate-12 transition-transform" />
+            <span>Show More</span>
+            <ArrowRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+      )}
     </section>
   );
 };

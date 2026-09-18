@@ -17,8 +17,8 @@ export const AdminLayout: React.FC = () => {
   const navigate = useNavigate();
   const username = authService.getCurrentUser();
 
-  const handleLogout = () => {
-    authService.logout();
+  const handleLogout = async () => {
+    await authService.logout();
     navigate('/admin/login');
   };
 

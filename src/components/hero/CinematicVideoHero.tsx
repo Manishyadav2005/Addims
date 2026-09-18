@@ -300,8 +300,8 @@ export const CinematicVideoHero: React.FC<CinematicVideoHeroProps> = () => {
         />
       </div>
 
-      {/* 4. Minimal Icon-Only Floating Story Controller (Bottom Right) - Sleek Dark Obsidian Glass */}
-      <div className="absolute bottom-8 right-6 sm:right-10 z-30 flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#0C0614]/85 border border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.85)] backdrop-blur-xl pointer-events-auto">
+      {/* 4. Minimal Icon-Only Floating Story Controller (Top Right Corner) - Sleek Dark Obsidian Glass */}
+      <div className="absolute top-4 sm:top-5 right-4 sm:right-6 z-30 flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#0C0614]/85 border border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.85)] backdrop-blur-xl pointer-events-auto transition-all duration-300">
         <button
           onClick={startVideoSequence}
           className="p-2 rounded-xl text-slate-300 hover:text-white bg-white/[0.06] hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/40 transition-all active:scale-95 group cursor-pointer"

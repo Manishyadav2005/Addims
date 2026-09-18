@@ -34,9 +34,9 @@ export const ContactSection: React.FC = () => {
       formData.append('from_name', name);
       formData.append('Name', name);
       formData.append('Phone Number', phone);
-      formData.append('Email Address', email);
+      formData.append('Email Address', email.trim() || 'Not Provided');
       formData.append('Solution Type', projectType);
-      formData.append('Project Scope / Details', message);
+      formData.append('Project Scope / Details', message.trim() || 'No Details Provided');
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -273,14 +273,13 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {/* Email Address */}
+                  {/* Email Address (Optional) */}
                   <div>
                     <label className="text-[10.5px] font-mono text-black uppercase font-black block mb-1">
-                      Email Address <span className="text-purple-600">*</span>
+                      Email Address
                     </label>
                     <input
                       type="email"
-                      required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/60 border-2 border-slate-300/90 hover:border-purple-400 text-xs sm:text-[13.5px] font-bold text-slate-900 focus:outline-none focus:bg-white focus:border-purple-600 focus:ring-3 focus:ring-purple-100 transition-all shadow-xs"
@@ -298,23 +297,24 @@ export const ContactSection: React.FC = () => {
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/60 border-2 border-slate-300/90 hover:border-purple-400 text-xs sm:text-[13.5px] font-black text-slate-900 focus:outline-none focus:bg-white focus:border-purple-600 focus:ring-3 focus:ring-purple-100 transition-all cursor-pointer shadow-xs"
                     >
                       <option value="Business Management">Business Management CRM / ERP</option>
+                      <option value="School Website & ERP">School Website & Campus ERP</option>
                       <option value="Healthcare Systems">Healthcare & Clinic Telemetry</option>
                       <option value="Hotel Management">Hotel & Booking OS</option>
                       <option value="Restaurant & Billing">Restaurant Cloud POS & Billing</option>
                       <option value="AI & Intelligent Systems">Autonomous AI Agents</option>
                       <option value="Web & Digital Solutions">High-Performance Web Platform</option>
                       <option value="Custom Software">Bespoke Software Architecture</option>
+                      <option value="Others">Others / Custom Requirement</option>
                     </select>
                   </div>
                 </div>
 
-                {/* Project Message */}
+                {/* Project Message (Optional) */}
                 <div>
                   <label className="text-[10.5px] font-mono text-black uppercase font-black block mb-1">
-                    Project Scope / Details <span className="text-purple-600">*</span>
+                    Project Scope / Details
                   </label>
                   <textarea
-                    required
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
