@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { RotateCcw, Volume2, VolumeX } from 'lucide-react';
+import { RotateCcw, Volume2, VolumeX, ChevronDown } from 'lucide-react';
 import { soundFx } from '../../utils/audioSynthesizer';
 import confetti from 'canvas-confetti';
 
@@ -279,14 +279,19 @@ export const CinematicVideoHero: React.FC<CinematicVideoHeroProps> = () => {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="relative w-full h-screen min-h-[720px] max-h-[1080px] bg-[#03060E] overflow-hidden select-none flex items-center justify-center"
+      className="relative w-full h-[100dvh] min-h-[500px] sm:min-h-[720px] max-h-[1080px] bg-[#03060E] overflow-hidden select-none flex items-center justify-center"
     >
-      {/* 1. High-Definition 16:9 Video Canvas (1920x1080 Native Cinema Rendering) */}
+      {/* Ambient Cinematic Studio Glows for Seamless Mobile/Desktop Atmosphere */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <div className="w-[320px] sm:w-[650px] h-[220px] sm:h-[450px] bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-indigo-500/10 rounded-full blur-[100px]" />
+      </div>
+
+      {/* 1. High-Definition 16:9 Video Canvas (1920x1080 Native Cinema Rendering - Object Contain on Mobile, Object Cover on Desktop) */}
       <canvas
         ref={canvasRef}
         width={1920}
         height={1080}
-        className="w-full h-full object-cover pointer-events-none"
+        className="w-full h-full object-contain md:object-cover pointer-events-none transition-all duration-300"
       />
 
       {/* 2. Top & Bottom Subtle Vignette */}
@@ -321,6 +326,12 @@ export const CinematicVideoHero: React.FC<CinematicVideoHeroProps> = () => {
         >
           {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 animate-pulse" />}
         </button>
+      </div>
+
+      {/* 5. Mobile Scroll Cue */}
+      <div className="md:hidden absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none opacity-60 z-30 animate-pulse">
+        <span className="text-[9px] font-mono font-bold tracking-[0.25em] text-slate-400 uppercase">Scroll</span>
+        <ChevronDown className="w-3.5 h-3.5 text-cyan-400" />
       </div>
     </div>
   );
